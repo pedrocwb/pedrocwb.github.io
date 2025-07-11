@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Martins - AI/MLOps Consulting | Production-Ready AI Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --card-bg: #1e1e1e;
+            --accent: #00ff88;
+            --accent-secondary: #0080ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border: #333333;
+            --gradient-primary: linear-gradient(135deg, #00ff88, #0080ff);
+            --gradient-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -8px;
+            left: 0;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            background: var(--gradient-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 128, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero .description {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 500px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--primary-bg);
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            padding: 60px 0;
+            background: var(--secondary-bg);
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .tech-item {
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        /* Services */
+        .services {
+            padding: 120px 0;
+            background: var(--primary-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            color: var(--text-muted);
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Experience */
+        .experience {
+            padding: 120px 0;
+            background: var(--secondary-bg);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .experience-intro h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .experience-intro p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 24px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .experience-list {
+            space-y: 32px;
+        }
+
+        .experience-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            border-color: var(--accent);
+            transform: translateX(8px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: between;
+            align-items: start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .experience-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .experience-company {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .experience-period {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Interactive Tools */
+        .interactive {
+            padding: 120px 0;
+            background: var(--secondary-bg);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        .tool-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-container:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tool-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .tool-header h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .tool-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Quiz Styles */
+        .quiz-intro h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .quiz-intro p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .quiz-benefits {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .quiz-benefits li {
+            color: var(--text-secondary);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .quiz-progress {
+            margin-bottom: 32px;
+        }
+
+        .progress-bar {
+            background: var(--secondary-bg);
+            border-radius: 8px;
+            height: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: var(--gradient-primary);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .question-container {
+            margin-bottom: 32px;
+        }
+
+        .question {
+            margin-bottom: 32px;
+        }
+
+        .question h5 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .question-options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .option.selected {
+            border-color: var(--accent);
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent);
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .results-header h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .score-display {
+            font-size: 48px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .results-content {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .results-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Tech Stack Builder */
+        .stack-builder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .components-panel {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .components-panel h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .category {
+            margin-bottom: 24px;
+        }
+
+        .category h5 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .component {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            cursor: grab;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .component:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .component:active {
+            cursor: grabbing;
+        }
+
+        .component-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .component-name {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .builder-canvas {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .builder-canvas h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .canvas {
+            background: var(--primary-bg);
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            min-height: 400px;
+            padding: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .canvas.drag-over {
+            border-color: var(--accent);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .canvas-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+            opacity: 0.5;
+        }
+
+        .canvas-component {
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px;
+            display: inline-block;
+            position: relative;
+            cursor: move;
+        }
+
+        .canvas-component .remove-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .canvas-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+            justify-content: center;
+        }
+
+        .stack-analysis {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .stack-analysis h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .analysis-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .analysis-cta {
+            text-align: center;
+        }
+        .education {
+            padding: 120px 0;
+            background: var(--primary-bg);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+
+        .education-content h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--accent);
+        }
+
+        .education-content p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .education-approach {
+            margin-top: 40px;
+        }
+
+        .education-approach h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .approach-list {
+            list-style: none;
+            space-y: 16px;
+        }
+
+        .approach-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .approach-icon {
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .education-topics h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--accent);
+        }
+
+        .topic-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .topic-icon {
+            font-size: 24px;
+        }
+
+        .topic-header h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .topic-features {
+            list-style: none;
+        }
+
+        .topic-features li {
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .topic-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .education-cta {
+            text-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+        }
+
+        .education-cta h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .education-cta p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact {
+            padding: 120px 0;
+            background: var(--primary-bg);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .contact-form-wrapper {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form-wrapper:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-header .contact-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .form-header .contact-label {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.1);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .contact-form select {
+            cursor: pointer;
+        }
+
+        .contact-form select option {
+            background: var(--secondary-bg);
+            color: var(--text-primary);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .success-message {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .contact-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .contact-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-bg);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 16px;
+            }
+
+            .stack-builder {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .components-panel {
+                max-height: 400px;
+            }
+
+            .canvas-actions,
+            .results-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Pedro Martins</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content animate-in">
+                <h1>AI/MLOps Consulting</h1>
+                <p class="subtitle">Production-Ready AI Solutions for Enterprise</p>
+                <p class="description">Specialized in scalable ML infrastructure, LLM deployment, and end-to-end AI product development. From POC to production.</p>
+                
+                <div class="cta-group">
+                    <a href="#contact" class="btn-primary">Start Your Project</a>
+                    <a href="#services" class="btn-secondary">View Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">AI Education & Knowledge Sharing</h2>
+                <p class="section-subtitle">Building practical AI skills for production environments</p>
+            </div>
+
+            <div class="education-grid">
+                <div class="education-content reveal">
+                    <h3>Why I Teach</h3>
+                    <p>After 8+ years building AI systems across three countries—from Harvard Medical School to Daimler's production lines—I've learned that there's a massive gap between AI theory and what actually works in production.</p>
+                    
+                    <p>Most AI education focuses on algorithms and models. I focus on the practical skills that separate junior developers from senior engineers who can ship production systems that scale.</p>
+
+                    <div class="education-approach">
+                        <h4>My Teaching Approach</h4>
+                        <ul class="approach-list">
+                            <li><span class="approach-icon">🔧</span> <strong>Production-First:</strong> Learn with real-world constraints, not toy datasets</li>
+                            <li><span class="approach-icon">⚡</span> <strong>MLOps Focus:</strong> Deployment, monitoring, and scaling from day one</li>
+                            <li><span class="approach-icon">🌍</span> <strong>International Standards:</strong> Skills that work at global companies</li>
+                            <li><span class="approach-icon">💼</span> <strong>Career Context:</strong> How to leverage technical skills for career growth</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="education-topics reveal">
+                    <h3>What I Cover</h3>
+                    
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <span class="topic-icon">🚀</span>
+                            <h4>Production MLOps</h4>
+                        </div>
+                        <ul class="topic-features">
+                            <li>Kubernetes deployment patterns</li>
+                            <li>CI/CD for ML models</li>
+                            <li>Model monitoring & drift detection</li>
+                            <li>Infrastructure as code</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <span class="topic-icon">🤖</span>
+                            <h4>LLM Engineering</h4>
+                        </div>
+                        <ul class="topic-features">
+                            <li>RAG implementation strategies</li>
+                            <li>Vector database optimization</li>
+                            <li>LLM fine-tuning techniques</li>
+                            <li>Multi-agent system design</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <span class="topic-icon">📊</span>
+                            <h4>Data Engineering</h4>
+                        </div>
+                        <ul class="topic-features">
+                            <li>Real-time data pipelines</li>
+                            <li>Data quality frameworks</li>
+                            <li>Scalable ETL patterns</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <span class="topic-icon">🌟</span>
+                            <h4>Career Strategy</h4>
+                        </div>
+                        <ul class="topic-features">
+                            <li>Building technical portfolios</li>
+                            <li>International job markets</li>
+                            <li>Technical interview prep</li>
+                            <li>Salary negotiation tactics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-cta reveal">
+                <h3>Learn Production AI Skills</h3>
+                <p>Get practical, battle-tested knowledge from someone who's built AI systems at scale.</p>
+                <div class="cta-group">
+                    <a href="https://linkedin.com/in/pedro-martins-cwb" class="btn-primary">Follow on LinkedIn</a>
+                    <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="btn-secondary">Get In Touch</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <div class="tech-grid">
+                <div class="tech-item">Python</div>
+                <div class="tech-item">Kubernetes</div>
+                <div class="tech-item">Docker</div>
+                <div class="tech-item">AWS</div>
+                <div class="tech-item">MLflow</div>
+                <div class="tech-item">TensorFlow</div>
+                <div class="tech-item">PyTorch</div>
+                <div class="tech-item">FastAPI</div>
+                <div class="tech-item">LangChain</div>
+                <div class="tech-item">Vector DBs</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Services</h2>
+                <p class="section-subtitle">End-to-end AI solutions from architecture to deployment</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <span class="service-icon">🔧</span>
+                    <h3>MLOps Infrastructure</h3>
+                    <p>Design and implement scalable ML pipelines with CI/CD, monitoring, and automated deployment on Kubernetes.</p>
+                    <ul class="service-features">
+                        <li>Model versioning & tracking</li>
+                        <li>Automated testing & validation</li>
+                        <li>Container orchestration</li>
+                        <li>Performance monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <span class="service-icon">🤖</span>
+                    <h3>LLM Integration</h3>
+                    <p>Build production-ready applications with Large Language Models, RAG systems, and custom AI agents.</p>
+                    <ul class="service-features">
+                        <li>Custom chatbot development</li>
+                        <li>RAG implementation</li>
+                        <li>Multi-agent systems</li>
+                        <li>LLM fine-tuning</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <span class="service-icon">⚡</span>
+                    <h3>AI Product Development</h3>
+                    <p>Full-stack AI applications from concept to production, with focus on scalability and business impact.</p>
+                    <ul class="service-features">
+                        <li>Technical architecture</li>
+                        <li>Backend development</li>
+                        <li>API design & implementation</li>
+                        <li>Database optimization</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <span class="service-icon">📊</span>
+                    <h3>Data Engineering</h3>
+                    <p>Build robust data pipelines and infrastructure to support your ML initiatives at scale.</p>
+                    <ul class="service-features">
+                        <li>Data pipeline automation</li>
+                        <li>Real-time processing</li>
+                        <li>Data quality monitoring</li>
+                        <li>ETL/ELT optimization</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <span class="service-icon">🎵</span>
+                    <h3>Vibe-Driven Development</h3>
+                    <p>AI development with a creative edge. I integrate music, ambient coding sessions, and flow-state practices into the development process for enhanced creativity and problem-solving.</p>
+                    <ul class="service-features">
+                        <li>Creative coding environments</li>
+                        <li>Flow-state optimization</li>
+                        <li>Music-enhanced development</li>
+                        <li>Innovative problem-solving approaches</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="experience-grid">
+                <div class="experience-intro reveal">
+                    <h2>Proven Track Record</h2>
+                    <p>8+ years delivering production AI solutions for companies like Daimler, Shipwell, and dozens of startups. Specialized in making complex AI systems work reliably at scale.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Delivered</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Countries</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">90%</span>
+                            <span class="stat-label">Test Coverage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-list">
+                    <div class="experience-item reveal">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Senior ML Engineer</div>
+                                <div class="experience-company">Shipwell</div>
+                            </div>
+                            <div class="experience-period">2024 - Present</div>
+                        </div>
+                        <p class="experience-description">Developing AI solutions for logistics optimization using advanced automation and scalable MLOps pipelines. Building ML models for supply chain efficiency.</p>
+                    </div>
+
+                    <div class="experience-item reveal">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Founder & AI Engineer</div>
+                                <div class="experience-company">Canary Tech</div>
+                            </div>
+                            <div class="experience-period">2024</div>
+                        </div>
+                        <p class="experience-description">Founded AI consultancy specializing in LLMs, generative AI, and multi-agent systems. Delivered solutions for chatbots, automation, and full-stack AI applications.</p>
+                    </div>
+
+                    <div class="experience-item reveal">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Senior MLOps Engineer</div>
+                                <div class="experience-company">Gesund.ai</div>
+                            </div>
+                            <div class="experience-period">2023 - 2024</div>
+                        </div>
+                        <p class="experience-description">Led platform migration to Kubernetes and implemented robust MLOps workflows. Designed CI/CD pipelines for ML model deployment across diverse environments.</p>
+                    </div>
+
+                    <div class="experience-item reveal">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Senior ML Engineer</div>
+                                <div class="experience-company">Data Revenue (Daimler)</div>
+                            </div>
+                            <div class="experience-period">2019 - 2022</div>
+                        </div>
+                        <p class="experience-description">Led team of 4 developers creating Python applications for automotive manufacturing. Implemented TDD with 90%+ test coverage and Kubernetes deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Ready to Build Something?</h2>
+            <p>Let's discuss your AI/MLOps project and how we can make it production-ready.</p>
+            
+            <div class="contact-grid">
+                <a href="https://linkedin.com/in/pedro-martins-cwb" class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-value">pedro-martins-cwb</div>
+                </a>
+                
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-header">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-label">Send Message</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="service" name="service" required>
+                                <option value="">Select Service</option>
+                                <option value="mlops">MLOps Infrastructure</option>
+                                <option value="llm">LLM Integration</option>
+                                <option value="ai-product">AI Product Development</option>
+                                <option value="data-engineering">Data Engineering</option>
+                                <option value="education">AI Education/Training</option>
+                                <option value="consultation">General Consultation</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Tell me about your project..." rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary form-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pedro Martins. AI/MLOps Consulting - Production-Ready Solutions.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Create mailto link with form data
+            const subject = encodeURIComponent(`AI/MLOps Project Inquiry - ${data.service}`);
+            const body = encodeURIComponent(`Name: ${data.name}
+Email: ${data.email}
+Service: ${data.service}
+
+Message:
+${data.message}`);
+            
+            const mailtoLink = `mailto:pedromartins.cwb@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.style.display = 'block';
+            successDiv.innerHTML = '✓ Email client opened! Please send the message from your email app.';
+            
+            // Insert success message before form
+            this.parentNode.insertBefore(successDiv, this);
+            
+            // Reset form
+            this.reset();
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Create mailto link with form data
+            const subject = encodeURIComponent(`AI/MLOps Project Inquiry - ${data.service}`);
+            const body = encodeURIComponent(`Name: ${data.name}
+Email: ${data.email}
+Service: ${data.service}
+
+Message:
+${data.message}`);
+            
+            const mailtoLink = `mailto:pedromartins.cwb@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.style.display = 'block';
+            successDiv.innerHTML = '✓ Email client opened! Please send the message from your email app.';
+            
+            // Insert success message before form
+            this.parentNode.insertBefore(successDiv, this);
+            
+            // Reset form
+            this.reset();
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.borderBottom = '1px solid rgba(0, 255, 136, 0.2)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.borderBottom = '1px solid #333333';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Add subtle parallax effect to hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
